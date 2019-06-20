@@ -1,0 +1,7 @@
+[IP]
+command=echo IP: $(hostname -I)
+interval=30
+
+[Time]
+command=date "+%Y-%m-%d %H:%M:%S"
+interval=5
