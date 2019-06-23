@@ -33,3 +33,5 @@ cd i3-cinnamon
 git pull
 
 sudo make install
+
+echo Done

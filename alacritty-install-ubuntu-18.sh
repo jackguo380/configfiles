@@ -22,10 +22,14 @@ git checkout cd8d537bed98559ed49c1465db84ecec5393119f
 
 rustup update stable
 
+cargo install cargo-deb
+
 sudo apt update
 
 sudo apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
 
 cargo build --release
 
-cargo deb
+cargo deb --install
+
+echo Done

@@ -12,3 +12,5 @@ for dir in alacritty i3 i3blocks; do
 
     ln -s "$repo/$dir" .
 done
+
+echo Done
