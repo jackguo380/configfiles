@@ -19,7 +19,7 @@ fi
 
 sudo apt update
 
-sudo apt install i3 i3lock-fancy i3blocks suckless-tools compton
+sudo apt install i3 i3lock-fancy i3blocks suckless-tools compton dunst
 
 cd
 
