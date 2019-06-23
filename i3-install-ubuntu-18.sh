@@ -20,3 +20,16 @@ fi
 sudo apt update
 
 sudo apt install i3 i3lock-fancy i3blocks
+
+cd
+
+if [ ! -d i3-cinnamon/.git ]; then
+    rm -r -f i3-cinnamon
+    git clone https://github.com/jbbr/i3-cinnamon i3-cinnamon
+fi
+
+cd i3-cinnamon
+
+git pull
+
+sudo make install
