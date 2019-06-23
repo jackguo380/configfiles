@@ -15,6 +15,8 @@ done
 
 echo Done
 
+cd "$repo"
+
 echo "Installing i3"
 
 ./i3-install-ubuntu-18.sh

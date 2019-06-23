@@ -16,13 +16,13 @@ fi
 
 cd alacritty
 
-git pull
-
 git checkout cd8d537bed98559ed49c1465db84ecec5393119f
 
 rustup update stable
 
-cargo install cargo-deb
+if ! cargo deb --help &> /dev/null; then
+    cargo install cargo-deb
+fi
 
 sudo apt update
 
@@ -31,5 +31,8 @@ sudo apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfi
 cargo build --release
 
 cargo deb --install
+
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 1
+sudo update-alternatives --set x-terminal-emulator /usr/bin/alacritty
 
 echo Done

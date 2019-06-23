@@ -25,6 +25,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start a file explorer
+bindsym $mod+m exec xdg-open ~
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
