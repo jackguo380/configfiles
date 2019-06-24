@@ -5,7 +5,21 @@ set -e
 
 LABEL="${LABEL:-Audio Out}:"
 
-CARD=${CARD:-0}
+if [ -z "$CARD" ]; then
+    while read n name && read alsa eq alsanum; do
+        [ "$n" = "Name:" ] || continue
+        [ "$alsa" = "alsa.card" ] || continue
+
+        name=${name#alsa_card}
+
+        if pactl info | grep "Default Sink" | grep "$name" &> /dev/null; then
+            CARD=$(echo "${alsanum//\"/}")
+            break
+        fi
+    done < <(pactl list cards | grep '\(Name:\|alsa\.card \)')
+
+    CARD=${CARD:-0}
+fi
 
 if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
     # Xonar DGX (snd-oxygen driver)
