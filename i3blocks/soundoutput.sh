@@ -6,14 +6,14 @@ set -e
 LABEL="${LABEL:-Audio Out}:"
 
 if [ -z "$CARD" ]; then
-    while read n name && read alsa eq alsanum; do
+    while read -r n name && read -r alsa eq alsanum; do
         [ "$n" = "Name:" ] || continue
         [ "$alsa" = "alsa.card" ] || continue
 
         name=${name#alsa_card}
 
         if pactl info | grep "Default Sink" | grep "$name" &> /dev/null; then
-            CARD=$(echo "${alsanum//\"/}")
+            CARD=${alsanum//\"/}
             break
         fi
     done < <(pactl list cards | grep '\(Name:\|alsa\.card \)')
