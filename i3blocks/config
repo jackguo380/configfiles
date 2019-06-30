@@ -1,11 +1,11 @@
+[Sound]
+command=$HOME/.config/i3blocks/soundoutput.sh
+interval=once
+
 [Volume]
 command=$HOME/.config/i3blocks/soundvolume.sh
 interval=5
 signal=10
-
-[Sound]
-command=$HOME/.config/i3blocks/soundoutput.sh
-interval=once
 
 [IP]
 command=echo IP: $(hostname -I)

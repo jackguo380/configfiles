@@ -2,8 +2,6 @@
 
 set -e
 
-LABEL="${LABEL:-Vol}:"
-
 function parse_vol {
     local IFS=:
 
@@ -31,9 +29,9 @@ if [ -z "$CARD" ]; then
 
         if pactl info | grep "Default Sink" | grep "$name" &> /dev/null; then
             if [ "$mute" = yes ]; then
-                echo "$LABEL Mute"
+                echo "🎚 Mute"
             else
-                echo "$LABEL $(echo "$volume" | parse_vol)"
+                echo "🎚 $(echo "$volume" | parse_vol)"
             fi
 
             exit 0

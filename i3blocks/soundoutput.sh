@@ -3,8 +3,6 @@
 
 set -e
 
-LABEL="${LABEL:-Audio Out}:"
-
 if [ -z "$CARD" ]; then
     while read -r n name && read -r alsa eq alsanum; do
         [ "$n" = "Name:" ] || continue
@@ -37,15 +35,18 @@ if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
             amixer -c "$CARD" sset 'Analog Output' 'Stereo Headphones FP' &> /dev/null
             pactl set-card-profile "$CARD" 'output:analog-stereo+input:analog-stereo'
             ;; 
-        "Stereo Headphones FP")
+        #"Stereo Headphones FP")
+        #    amixer -c "$CARD" sset 'Analog Output' 'Multichannel' &> /dev/null
+        #    pactl set-card-profile "$CARD" 'output:analog-surround-51+input:analog-stereo'
+        #    ;;
+        #"Stereo Headphones")
+        #    amixer -c "$CARD" sset 'Analog Output' 'Multichannel' &> /dev/null
+        #    pactl set-card-profile "$CARD" 'output:analog-surround-51+input:analog-stereo'
+        #    ;;
+        *)
             amixer -c "$CARD" sset 'Analog Output' 'Multichannel' &> /dev/null
             pactl set-card-profile "$CARD" 'output:analog-surround-51+input:analog-stereo'
             ;;
-        "Stereo Headphones")
-            amixer -c "$CARD" sset 'Analog Output' 'Multichannel' &> /dev/null
-            pactl set-card-profile "$CARD" 'output:analog-surround-51+input:analog-stereo'
-            ;;
-        *) echo "$LABEL Unknown" ;;
     esac
 
     # Check which card we ended on
@@ -53,17 +54,16 @@ if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
         grep Item0 | sed -e "s/.*Item0: '\(.*\)'.*/\1/")
 
     case "$output" in
-        Multichannel) echo "$LABEL Speakers (Multi)" ;; 
-        "Stereo Headphones FP") echo "$LABEL Headphones" ;;
-        "Stereo Headphones") echo "$LABEL Speakers" ;;
-        *) echo "$LABEL Unknown" ;;
+        Multichannel) echo "🔊" ;; 
+        "Stereo Headphones FP") echo "🎧" ;;
+        *) echo "Error" ;;
     esac
 elif amixer -c "$CARD" | grep 'control.*Headphone' &> /dev/null; then
     # Generic sound card
     if amixer -c "$CARD" sget Headphone | grep 'Playback.*\[on\]' &> /dev/null; then
-        echo "$LABEL Headphones"
+        echo "🎧"
     else
-        echo "$LABEL Speakers"
+        echo "🔊"
     fi
 else
     echo 'Bad Sound Card'
