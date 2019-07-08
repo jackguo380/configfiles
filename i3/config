@@ -33,6 +33,9 @@ client.background       #ffffff
 # Thin borders
 new_window 1pixel
 
+# Hide edges on workspaces with 1 window
+hide_edge_borders smart
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
