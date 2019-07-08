@@ -54,16 +54,16 @@ if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
         grep Item0 | sed -e "s/.*Item0: '\(.*\)'.*/\1/")
 
     case "$output" in
-        Multichannel) echo "🔊" ;; 
-        "Stereo Headphones FP") echo "🎧" ;;
+        Multichannel) echo "Spkr" ;; 
+        "Stereo Headphones FP") echo "Hdph" ;;
         *) echo "Error" ;;
     esac
 elif amixer -c "$CARD" | grep 'control.*Headphone' &> /dev/null; then
     # Generic sound card
     if amixer -c "$CARD" sget Headphone | grep 'Playback.*\[on\]' &> /dev/null; then
-        echo "🎧"
+        echo "Spkr"
     else
-        echo "🔊"
+        echo "Hdph"
     fi
 else
     echo 'Bad Sound Card'

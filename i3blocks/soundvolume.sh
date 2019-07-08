@@ -29,9 +29,9 @@ if [ -z "$CARD" ]; then
 
         if pactl info | grep "Default Sink" | grep "$name" &> /dev/null; then
             if [ "$mute" = yes ]; then
-                echo "🎚 Mute"
+                echo "Vol: Mute"
             else
-                echo "🎚 $(echo "$volume" | parse_vol)"
+                echo "Vol: $(echo "$volume" | parse_vol)"
             fi
 
             exit 0
