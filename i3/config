@@ -23,9 +23,9 @@ font pango:Hack 8
 floating_modifier $mod
 
 # Colors                border  backgrd text    indicat child_border
-client.focused          #666666 #666666 #ffffff #888888 #666666
-client.focused_inactive #333333 #222222 #ffffff #555555 #222222
-client.unfocused        #333333 #222222 #888888 #555555 #222222
+client.focused          #8FA876 #8FA876 #ffffff #8FA876 #8FA876 
+client.focused_inactive #2F2F2F #454545 #ffffff #555555 #454545
+client.unfocused        #2F2F2F #454545 #999999 #555555 #454545
 client.urgent           #222222 #900000 #ffffff #900000 #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
@@ -173,14 +173,14 @@ bar {
     status_command i3blocks
 
     colors {
-        background #111111
+        background #383838
         statusline #ffffff
         separator #666666
 
         #                  border  backgrd text
-        focused_workspace  #666666 #666666 #ffffff
-        active_workspace   #333333 #222222 #ffffff
-        inactive_workspace #333333 #222222 #888888
+        focused_workspace  #8FA876 #8FA876 #ffffff
+        active_workspace   #454545 #2F2F2F #ffffff
+        inactive_workspace #454545 #2F2F2F #999999
         urgent_workspace   #222222 #900000 #ffffff
         binding_mode       #888888 #900000 #ffffff
     }
