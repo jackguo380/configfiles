@@ -2,7 +2,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+#set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -23,10 +24,10 @@ font pango:Hack 8
 floating_modifier $mod
 
 # Colors                border  backgrd text    indicat child_border
-client.focused          #8FA876 #8FA876 #ffffff #8FA876 #8FA876 
-client.focused_inactive #2F2F2F #454545 #ffffff #555555 #454545
-client.unfocused        #2F2F2F #454545 #999999 #555555 #454545
-client.urgent           #222222 #900000 #ffffff #900000 #900000
+client.focused          #16A085 #16A085 #ffffff #16A085 #16A085 
+client.focused_inactive #29353B #263238 #ffffff #263238 #29353B
+client.unfocused        #29353B #263238 #999999 #263238 #29353B
+client.urgent           #DA4036 #DA4036 #ffffff #DA4036 #DA4036
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
 
@@ -46,11 +47,11 @@ bindsym $mod+m exec xdg-open ~
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+Shift+d exec dmenu_run
+bindsym $mod+Shift+d exec dmenu_run -nb "#263238" -nf "#ffffff" -sb "#16A085" -sf "#ffffff"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -nb "#263238" -nf "#ffffff" -sb "#16A085" -sf "#ffffff"'
 
 # change focus
 bindsym $mod+h focus left
@@ -133,12 +134,20 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock
-bindsym $mod+F12 exec cinnamon-screensaver-command --lock
+#bindsym $mod+F12 exec cinnamon-screensaver-command --lock
+bindsym $mod+F12 exec i3lock -i /home/guoj/Pictures/lock.png && systemctl suspend
 
 # Volume keys
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c 1 -q sset Master,0 1+ unmute && killall -USR1 i3status"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c 1 -q sset Master,0 1- unmute && killall -USR1 i3status"
+bindsym XF86AudioMute exec --no-startup-id "amixer -c 1 -q sset Master,0 toggle && killall -USR1 i3status"
+
+# Brightness Keys
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10 && notify-send -u low -t 3000 Brightness -h int:value:$(xbacklight -get) -h string:synchronous:brightness"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10 && notify-send -u low -t 3000 Brightness -h int:value:$(xbacklight -get) -h string:synchronous:brightness"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -169,21 +178,38 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-#   status_command 2>/tmp/i3blocks.err i3blocks -vvv | tee /tmp/i3blocks.out
-    status_command i3blocks
+    status_command i3status
+    #status_command i3blocks
 
     colors {
-        background #383838
+        background #263238
         statusline #ffffff
-        separator #666666
+        separator #16A085
 
         #                  border  backgrd text
-        focused_workspace  #8FA876 #8FA876 #ffffff
-        active_workspace   #454545 #2F2F2F #ffffff
-        inactive_workspace #454545 #2F2F2F #999999
-        urgent_workspace   #222222 #900000 #ffffff
-        binding_mode       #888888 #900000 #ffffff
+        focused_workspace  #16A085 #16A085 #ffffff
+        active_workspace   #29353B #263238 #ffffff
+        inactive_workspace #29353B #263238 #999999
+        urgent_workspace   #DA4036 #DA4036 #ffffff
+        binding_mode       #263238 #900000 #ffffff
     }
 }
 
 exec --no-startup-id compton
+
+exec --no-startup-id feh --bg-fill /home/guoj/Pictures/Desktop.jpg
+
+# NetworkManager tray icon
+exec --no-startup-id nm-applet
+
+# Manjaro packages tray icon
+exec --no-startup-id pamac-tray
+
+# Synergy
+exec --no-startup-id synergy
+
+# Keyboard, off at startup
+exec --no-startup-id msiklm red off
+
+# Redshift
+exec --no-startup-id redshift-gtk
