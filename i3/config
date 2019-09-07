@@ -28,8 +28,8 @@ client.focused          #16A085 #16A085 #ffffff #16A085 #16A085
 client.focused_inactive #29353B #263238 #ffffff #263238 #29353B
 client.unfocused        #29353B #263238 #999999 #263238 #29353B
 client.urgent           #DA4036 #DA4036 #ffffff #DA4036 #DA4036
-client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
-client.background       #ffffff
+client.placeholder      #29353B #263238 #ffffff #263238 #29353B
+client.background       #263238
 
 # Thin borders
 new_window 1pixel
@@ -190,8 +190,8 @@ bar {
         focused_workspace  #16A085 #16A085 #ffffff
         active_workspace   #29353B #263238 #ffffff
         inactive_workspace #29353B #263238 #999999
-        urgent_workspace   #DA4036 #DA4036 #ffffff
-        binding_mode       #263238 #900000 #ffffff
+        urgent_workspace   #DA4036 #263238 #ffffff
+        binding_mode       #29353B #DA4036 #ffffff
     }
 }
 
