@@ -197,7 +197,7 @@ bar {
 
 exec --no-startup-id compton
 
-exec --no-startup-id feh --bg-fill /home/guoj/Pictures/Desktop.jpg
+exec --no-startup-id feh --bg-fill /home/guoj/Pictures/Desktop.png
 
 # NetworkManager tray icon
 exec --no-startup-id nm-applet
@@ -209,7 +209,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id synergy
 
 # Keyboard, off at startup
-exec --no-startup-id msiklm red off
+exec --no-startup-id sleep 5 && msiklm red off
 
 # Redshift
 exec --no-startup-id redshift-gtk
