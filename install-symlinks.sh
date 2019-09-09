@@ -7,6 +7,11 @@ repo_dir=$(realpath "$(dirname "$0")")
 create_symlink() {
     local target link link_real
 
+    if [ ! -e "$1" ]; then
+        echo "target $1 does not exist"
+        return 1
+    fi
+
     target=$(realpath "$1")
     link=$2
 
@@ -35,7 +40,6 @@ create_symlink() {
 config_dir=$HOME/.config
 
 config_links=(
-    alacritty
     compton.conf
     dunst
     i3
