@@ -10,9 +10,20 @@ echo "Installing i3"
 
 ./i3-install-ubuntu-18.sh
 
-echo "Installing alacritty"
+echo "Installing urxvt"
 
-./alacritty-install-ubuntu-18.sh
+sudo apt install rxvt-unicode
+
+echo "Installing urxvt perls"
+
+pushd "$HOME"
+if [ ! -d urxvt-perls/.git ]; then
+    rm -rf urxvt-perls
+    git clone https://github.com/muennich/urxvt-perls urxvt-perls
+    cd urxvt-perls
+    mkdir -p "$HOME/.urxvt/ext"
+    ln -s "$PWD/keyboard-select" "$HOME/.urxvt/ext/"
+fi
 
 echo "Installing Hack Font"
 
