@@ -2,19 +2,9 @@
 
 set -e
 
-repo=$(realpath "$(dirname "$0")")
+echo "Installing symlinks"
 
-cd "$HOME/.config"
-
-for dir in alacritty compton.conf i3 i3blocks; do
-    rm -r -f $dir
-
-    ln -s "$repo/$dir" .
-done
-
-echo Done
-
-cd "$repo"
+./install-symlinks.sh
 
 echo "Installing i3"
 

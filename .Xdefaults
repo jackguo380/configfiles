@@ -1,0 +1,94 @@
+!! Font
+*.font: xft:Hack:style=Regular:size=12
+*.boldFont: xft:Hack:style=Bold:size=12
+*.italicFont: xft:Hack:style=Italic:size=12
+*.boldItalicFont: xft:Hack:style=Bold Italic:size=12
+
+!! Terminal Normal Colors
+! black
+*.color0: #000000
+! red
+*.color1: #cd0000
+! yellow
+*.color2: #00cd00
+! green
+*.color3: #cdcd00
+! blue
+*.color4: #0000ee
+! magenta
+*.color5: #cd00cd
+! cyan
+*.color6: #00cdcd
+! white
+*.color7: #e5e5e5
+
+!! Terminal Bright colors
+! black
+*.color8:  #7f7f7f
+! red
+*.color9:  #ff0000
+! yellow
+*.color10: #00ff00
+! green
+*.color11: #ffff00
+! blue
+*.color12: #5c5cff
+! magenta
+*.color13: #ff00ff
+! cyan
+*.color14: #00ffff
+! white
+*.color15: #ffffff
+
+!! Appearance
+*.foreground: #ffffff
+*.background: #263238
+*.cursorColor: #16A085
+
+URxvt.background: [75]#1C2C34
+URxvt.depth: 32
+URxvt.internalBorder: 4
+
+! Scrollbar
+URxvt.scrollBar: false
+!URxvt.scollstyle: next
+!URxvt.scrollColor: #263238
+!URxvt.troughColor: #29353B
+
+URxvt.pointerColor: #16A085
+URxvt.pointerColor2: #263238
+
+!! Behavior
+! general
+URxvt.iso14755: false
+URxvt.print-pipe: cat > /dev/null
+URxvt.cursorBlink: true
+URxvt.cutchars: \`"'&()*,;<=>?@[]^{|}:
+URxvt.saveLines: 65536
+
+! Dont scroll when stdout changes
+URxvt.scrollTtyOutput: false
+! Scroll with mouse/keys
+URxvt.scrollWithBuffer: true
+! Scroll when a key is pressed
+URxvt.scrollTtyKeypress: true
+
+! Scroll in a pager
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+!! Extensions
+URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,new-window
+
+! clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Control-Meta-C: builtin-string:
+URxvt.keysym.Control-Meta-V: builtin-string:
+
+! keyboard select
+URxvt.keysym.M-Escape: keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
+
+! new-window
+URxvt.keysym.Shift-Control-N: new-window:activate
