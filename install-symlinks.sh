@@ -45,6 +45,7 @@ config_links=(
     i3
     i3blocks
     i3status
+    chromium-flags.conf
     )
 
 for link in "${config_links[@]}"; do
