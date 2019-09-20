@@ -18,4 +18,8 @@ echo "Installing Hack Font"
 
 sudo pamac install ttf-hack
 
+echo "Installing fzf"
+
+./install-fzf.sh
+
 echo "Done everything"

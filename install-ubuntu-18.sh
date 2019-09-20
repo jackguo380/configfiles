@@ -26,9 +26,14 @@ if [ ! -d urxvt-perls/.git ]; then
         ln -s "$PWD/keyboard-select" "$HOME/.urxvt/ext/"
     fi
 fi
+popd
 
 echo "Installing Hack Font"
 
 sudo apt install fonts-hack-ttf
+
+echo "Installing fzf"
+
+./install-fzf.sh
 
 echo "Done everything"
