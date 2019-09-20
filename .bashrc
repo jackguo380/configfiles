@@ -144,6 +144,8 @@ if ! shopt -oq posix; then
     fi
 fi
 
+export EDITOR=vim
+
 export PATH="$HOME/.local/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
