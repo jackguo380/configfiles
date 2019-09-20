@@ -38,7 +38,7 @@ set -o vi
 #bind '"jj":"\e"'
 
 # cd up a directory with Ctrl-u
-bind '"\C-g":"cd ..\n"'
+bind '"\C-g":"\eddicd ..\n"'
 
 # Bash Prompt
 # [user@hostname][~/workdir]
