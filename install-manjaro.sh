@@ -22,4 +22,8 @@ echo "Installing fzf"
 
 ./install-fzf.sh
 
+echo "Install i3-move-workspace"
+
+./install-i3-move-workspace.sh
+
 echo "Done everything"
