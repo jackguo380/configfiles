@@ -144,6 +144,12 @@ if ! shopt -oq posix; then
     fi
 fi
 
+if command -v gpgconf > /dev/null; then
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+    pidof gpg-agent > /dev/null || gpgconf --launch gpg-agent
+fi
+
 export EDITOR=vim
 
 export PATH="$HOME/.local/bin:$PATH"
