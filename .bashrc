@@ -145,6 +145,7 @@ if ! shopt -oq posix; then
 fi
 
 if command -v gpgconf > /dev/null; then
+    export GPG_TTY=$(tty)
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
     pidof gpg-agent > /dev/null || gpgconf --launch gpg-agent
