@@ -66,6 +66,7 @@ home_links=(
     .bash_aliases
     .Xdefaults
     .profile
+    .gitconfig
     )
 
 for link in "${home_links[@]}"; do
