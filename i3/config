@@ -137,7 +137,7 @@ bindsym $mod+Ctrl+6 exec i3-move-workspace 6
 bindsym $mod+Ctrl+7 exec i3-move-workspace 7
 bindsym $mod+Ctrl+8 exec i3-move-workspace 8
 bindsym $mod+Ctrl+9 exec i3-move-workspace 9
-bindsym $mod+Ctrl+10 exec i3-move-workspace 10
+bindsym $mod+Ctrl+0 exec i3-move-workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
