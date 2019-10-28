@@ -4,7 +4,12 @@
 set -e
 
 if [ -z "$CARD" ]; then
-    while read -r n name && read -r alsa eq alsanum; do
+    while read -r card cardnum && read -r n name && read -r alsa eq alsanum; do
+        echo "Cardnum = $cardnum" >&2
+        echo "Name = $name" >&2
+        echo "Alsanum = $alsanum" >&2
+
+        [ "$card" = "Card" ] || continue
         [ "$n" = "Name:" ] || continue
         [ "$alsa" = "alsa.card" ] || continue
 
@@ -12,12 +17,16 @@ if [ -z "$CARD" ]; then
 
         if pactl info | grep "Default Sink" | grep "$name" &> /dev/null; then
             CARD=${alsanum//\"/}
+            PACARD=${cardnum//'#'/}
             break
         fi
-    done < <(pactl list cards | grep '\(Name:\|alsa\.card \)')
+    done < <(pactl list cards | grep '\(Card #\|Name:\|alsa\.card \)')
 
     CARD=${CARD:-0}
+    PACARD=${PACARD:-0}
 fi
+
+echo "Chose Card #$CARD $PACARD" >&2
 
 if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
     # Xonar DGX (snd-oxygen driver)
@@ -33,7 +42,7 @@ if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
     case "$output" in
         Multichannel)
             amixer -c "$CARD" sset 'Analog Output' 'Stereo Headphones FP' &> /dev/null
-            pactl set-card-profile "$CARD" 'output:analog-stereo+input:analog-stereo'
+            pactl set-card-profile "$PACARD" 'output:analog-stereo+input:analog-stereo'
             ;; 
         #"Stereo Headphones FP")
         #    amixer -c "$CARD" sset 'Analog Output' 'Multichannel' &> /dev/null
@@ -45,7 +54,7 @@ if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
         #    ;;
         *)
             amixer -c "$CARD" sset 'Analog Output' 'Multichannel' &> /dev/null
-            pactl set-card-profile "$CARD" 'output:analog-surround-51+input:analog-stereo'
+            pactl set-card-profile "$PACARD" 'output:analog-surround-51+input:analog-stereo'
             ;;
     esac
 
