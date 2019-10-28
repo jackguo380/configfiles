@@ -8,7 +8,7 @@ echo "Installing symlinks"
 
 echo "Configuring i3"
 
-./i3configure.sh
+./i3configure.sh MANJARO
 
 echo "Installing urxvt"
 

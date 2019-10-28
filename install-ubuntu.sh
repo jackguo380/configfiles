@@ -12,7 +12,7 @@ echo "Installing i3"
 
 echo "Configuring i3"
 
-./i3configure.sh
+./i3configure.sh UBUNTU
 
 echo "Installing urxvt"
 
