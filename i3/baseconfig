@@ -207,7 +207,8 @@ bar {
     }
 }
 
-exec --no-startup-id nice -n -5 compton
+exec --no-startup-id compton # --MANJARO--
+#exec --no-startup-id nice -n -5 compton # --UBUNTU--
 
 exec --no-startup-id feh --bg-fill /home/guoj/Pictures/Desktop.png
 
