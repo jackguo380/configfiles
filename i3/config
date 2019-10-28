@@ -225,3 +225,6 @@ exec --no-startup-id light-locker --lock-on-suspend
 
 # keyboard
 exec --no-startup-id msiklm red off
+
+# Polkit Agent
+#exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1

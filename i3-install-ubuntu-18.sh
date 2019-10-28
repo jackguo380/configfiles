@@ -23,12 +23,12 @@ sudo apt install i3 i3lock-fancy i3blocks suckless-tools compton dunst
 
 cd
 
-if [ ! -d i3-cinnamon/.git ]; then
-    rm -r -f i3-cinnamon
-    git clone https://github.com/jbbr/i3-cinnamon i3-cinnamon
+if [ ! -d i3-gnome/.git ]; then
+    rm -r -f i3-gnome
+    git clone https://github.com/i3-gnome/i3-gnome i3-gnome
 fi
 
-cd i3-cinnamon
+cd i3-gnome
 
 git pull
 
