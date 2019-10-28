@@ -10,6 +10,10 @@ echo "Installing i3"
 
 ./i3-install-ubuntu-18.sh
 
+echo "Configuring i3"
+
+./i3configure.sh
+
 echo "Installing urxvt"
 
 sudo apt install rxvt-unicode

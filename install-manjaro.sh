@@ -6,6 +6,10 @@ echo "Installing symlinks"
 
 ./install-symlinks.sh
 
+echo "Configuring i3"
+
+./i3configure.sh
+
 echo "Installing urxvt"
 
 sudo pamac install rxvt-unicode rxvt-unicode-terminfo
