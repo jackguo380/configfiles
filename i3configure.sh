@@ -43,11 +43,7 @@ sed -i -e "s/$config_regex/#\1 # --\2--/" "$i3config"
 
 echo "Enabling Wanted Lines in $i3config"
 curconfig_regex="^[ #]*\(.*\)#[ ]*--$configuration--[ ]*$"
-sed -i -e "s/$curconfig_regex/\1 # --$configuration--/" "$i3config"
-
-echo -e "\n==== BEGIN $i3config ===="
-grep "$config_regex" "$i3config"
-echo -e "==== END $i3config ====\n"
+sed -i -e "s/$curconfig_regex/\1/" "$i3config"
 
 echo DONE
 
