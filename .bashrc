@@ -51,21 +51,21 @@ dir_color='\[\033[1;94m\]'
 
 _prompt_command() {
     # Args
-    status=$1
+    local status=$1
 
     # Set title of terminal window to /bin/bash: /path/to/work/dir
-    start_title=$'\033]0;'
-    end_title=$'\a'
+    local start_title=$'\033]0;'
+    local end_title=$'\a'
 
     echo -n "${start_title} ${SHELL}: ${PWD} ${end_title}"
 
-    unset start_title end_title
-
     # Print [failed: N] for commands returning non-zero
-    color_reset=$'\033[0m'
-    sep_color=$'\033[1;90m'
-    fail_b_color=$'\033[1;91m'
-    fail_color=$'\033[91m'
+    local color_reset=$'\033[0m'
+    local sep_color=$'\033[1;90m'
+    local fail_b_color=$'\033[1;91m'
+    local fail_color=$'\033[91m'
+
+    local output
 
     if [ "$status" -ne 0 ]; then
         output="${color_reset}${sep_color}["
@@ -75,8 +75,6 @@ _prompt_command() {
 
         echo "$output"
     fi
-
-    unset status output color_reset sep_color fail_b_color fail_color
 }
 
 PROMPT_COMMAND='_prompt_command $?'
@@ -144,6 +142,8 @@ if ! shopt -oq posix; then
     fi
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 if command -v gpgconf > /dev/null; then
     export GPG_TTY=$(tty)
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
@@ -154,5 +154,3 @@ fi
 export EDITOR=vim
 
 export PATH="$HOME/.local/bin:$PATH"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
