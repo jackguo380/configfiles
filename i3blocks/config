@@ -11,9 +11,12 @@ signal=10
 command=echo IP: $(hostname -I)
 interval=30
 
-[Shutdown]
-command=cinnamon-session-quit --power-off
-full_text=Shutdown
+[DiskHome]
+#command=$HOME/.config/i3blocks/disk
+#LABEL="/ "
+#DIR=/
+#interval=30
+#ALERT_LOW=10
 
 [Time]
 command=date "+%Y-%m-%d %H:%M:%S"
