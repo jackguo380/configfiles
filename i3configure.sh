@@ -16,24 +16,27 @@ mapfile -t configs < <( \
 echo "Configurations: ${configs[*]}"
 
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 <configuration>"
+    echo "Usage: $0 <configurations...>"
     exit 1
 fi
 
-configuration=$1
+configurations=( "$@" )
 
-ok=0
-for conf in "${configs[@]}"; do
-    if [ "$configuration" = "$conf" ]; then
-        ok=1
-        break
+for configuration in "${configurations[@]}"; do
+    ok=0
+    for conf in "${configs[@]}"; do
+        if [ "$configuration" = "$conf" ]; then
+            ok=1
+            break
+        fi
+    done
+
+    if [ "$ok" != 1 ]; then
+        echo "Invalid Config: $conf"
+        exit 1
     fi
 done
 
-if [ "$ok" != 1 ]; then
-    echo "Invalid Config: $conf"
-    exit 1
-fi
 
 echo "Copying $baseconfig to $i3config"
 cp "$i3baseconfig" "$i3config"
@@ -41,9 +44,11 @@ cp "$i3baseconfig" "$i3config"
 echo "Commenting Out Unwanted Lines in $i3config"
 sed -i -e "s/$config_regex/#\1 # --\2--/" "$i3config"
 
-echo "Enabling Wanted Lines in $i3config"
-curconfig_regex="^[ #]*\(.*\)#[ ]*--$configuration--[ ]*$"
-sed -i -e "s/$curconfig_regex/\1/" "$i3config"
+for configuration in "${configurations[@]}"; do
+    echo "Enabling Wanted Lines for $configuration in $i3config"
+    curconfig_regex="^[ #]*\(.*\)#[ ]*--$configuration--[ ]*$"
+    sed -i -e "s/$curconfig_regex/\1/" "$i3config"
+done
 
 echo DONE
 

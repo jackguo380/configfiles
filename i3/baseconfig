@@ -2,8 +2,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4 # --UBUNTU--
-#set $mod Mod1 # --MANJARO--
+set $mod Mod4 # --DESKTOP--
+#set $mod Mod1 # --LAPTOP--
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -212,8 +212,8 @@ bar {
     }
 }
 
-exec --no-startup-id compton # --MANJARO--
-#exec --no-startup-id nice -n -5 compton # --UBUNTU--
+exec --no-startup-id compton # --LAPTOP--
+#exec --no-startup-id nice -n -5 compton # --DESKTOP--
 
 exec --no-startup-id feh --bg-fill /home/guoj/Pictures/Desktop.png
 
@@ -230,7 +230,7 @@ exec --no-startup-id kdeconnect-indicator
 #exec --no-startup-id light-locker --lock-on-suspend # --MANJARO--
 
 # keyboard
-#exec --no-startup-id msiklm red off # --MANJARO--
+#exec --no-startup-id msiklm red off # --LAPTOP--
 
 # Polkit Agent
 #exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 # --UBUNTU--
