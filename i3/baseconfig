@@ -215,7 +215,7 @@ bar {
 exec --no-startup-id compton # --LAPTOP--
 #exec --no-startup-id nice -n -5 compton # --DESKTOP--
 
-exec --no-startup-id feh --bg-fill /home/guoj/Pictures/Desktop.png
+exec --no-startup-id feh --bg-fill ~/Pictures/Desktop.png
 
 # NetworkManager tray icon
 exec --no-startup-id nm-applet
