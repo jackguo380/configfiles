@@ -26,12 +26,12 @@ _soundoutput_toggle() {
 
     case "$output" in
         Spkr)
-            echo "tooltip:Sound Output: Headphones" > $pipe
-            echo "icon:audio-headphones" > $pipe
-            ;;
-        Hdph)
             echo "tooltip:Sound Output: Speakers" > $pipe
             echo "icon:audio-speakers" > $pipe
+            ;;
+        Hdph)
+            echo "tooltip:Sound Output: Headphones" > $pipe
+            echo "icon:audio-headphones" > $pipe
             ;;
         *)
             echo "tooltip:Error" > $pipe
