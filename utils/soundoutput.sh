@@ -76,6 +76,7 @@ elif amixer -c "$CARD" | grep 'control.*Headphone' &> /dev/null; then
     fi
 else
     echo 'Bad Sound Card'
+    exit 1
 fi
 
 exit 0
