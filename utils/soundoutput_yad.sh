@@ -44,9 +44,9 @@ export -f _soundoutput_toggle
 export script_dir
 export pipe
 
+sleep 5 && _soundoutput_toggle &
+
 yad --notification \
     --listen \
-    --image="audio-speakers" \
-    --text="Sound Output: Speakers" \
     --command="bash -c _soundoutput_toggle" \
     <&3
