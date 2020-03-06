@@ -142,6 +142,10 @@ if ! shopt -oq posix; then
     fi
 fi
 
+if command -v fd &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f'
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if command -v gpgconf > /dev/null; then
