@@ -7,7 +7,8 @@ sudo echo
 if ! dpkg -l sur5r-keyring &> /dev/null; then
     cd /tmp
 
-    /usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
+    /usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2020.02.03_all.deb keyring.deb SHA256:c5dd35231930e3c8d6a9d9539c846023fe1a08e4b073ef0d2833acd815d80d48
+
     sudo dpkg -i ./keyring.deb
 
     rm keyring.deb
@@ -19,9 +20,11 @@ fi
 
 sudo apt update
 
-sudo apt install i3 i3lock-fancy i3blocks suckless-tools compton dunst
+sudo apt install i3 i3lock-fancy i3blocks suckless-tools compton dunst i3status
 
 cd
+
+exit 0
 
 if [ ! -d i3-gnome/.git ]; then
     rm -r -f i3-gnome

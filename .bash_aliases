@@ -1,2 +1,1 @@
-
 alias xo='xdg-open'
