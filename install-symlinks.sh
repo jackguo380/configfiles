@@ -65,7 +65,6 @@ home_links=(
     .inputrc
     .bash_aliases
     .Xdefaults
-    .profile
     .gitconfig
     )
 
