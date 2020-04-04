@@ -158,3 +158,6 @@ fi
 export EDITOR=vim
 
 export PATH="$HOME/.local/bin:$PATH"
+
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
+
