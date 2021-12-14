@@ -29,6 +29,7 @@ fi
 echo "Chose Card Alsa $CARD PA $PACARD" >&2
 
 if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
+    echo "Xonar DGX Card" >&2
     # Xonar DGX (snd-oxygen driver)
     # In order to swap between front-panel aux and regular surround output
     # we need to set:
@@ -67,7 +68,68 @@ if amixer -c "$CARD" | grep 'control.*Analog Output' &> /dev/null; then
         "Stereo Headphones FP") echo "Hdph" ;;
         *) echo "Error" ;;
     esac
+elif amixer -c "$CARD" | grep 'control.*Rear Mic' &> /dev/null; then
+    echo "Starship/Matisse Card" >&2
+    # Starship/Matisse Card
+    sinknum=
+    cursinknum=
+    while read -r line; do
+        if [[ $line =~ ^Sink ]]; then
+            cursinknum=${line##*#}
+            continue
+        fi
+
+        if [ "${line## }" = "alsa.card = \"$CARD\"" ]; then
+            sinknum=$cursinknum
+            break
+        fi
+    done < <(pactl list sinks)
+
+    if [ -z "$sinknum" ]; then
+        echo "Error"
+        exit 0
+    fi
+
+    getcurrentport_() {
+        local correct_card=0
+        while read -r line; do
+            if [ "${line## }" = "alsa.card = \"$CARD\"" ]; then
+                correct_card=1
+                continue
+            elif [[ $line =~ ^Sink ]]; then
+                correct_card=0
+                continue
+            fi
+
+            if [ $correct_card = 0 ]; then
+                continue
+            fi
+
+            if [[ ${line## } =~ 'Active Port:' ]]; then
+                echo "${line##*: }"
+                break
+            fi
+        done < <(pactl list sinks)
+    }
+
+    case "$(getcurrentport_)" in
+        *lineout)
+            pactl set-sink-port "$sinknum" analog-output-headphones
+            amixer -c "$CARD" sset 'Auto-Mute Mode' Enabled &> /dev/null
+            ;; 
+        *)
+            pactl set-sink-port "$sinknum" analog-output-lineout
+            amixer -c "$CARD" sset 'Auto-Mute Mode' Disabled &> /dev/null
+            ;;
+    esac
+
+    case "$(getcurrentport_)" in
+        *lineout) echo "Spkr" ;; 
+        *headphones) echo "Hdph" ;;
+        *) echo "Error" ;;
+    esac
 elif amixer -c "$CARD" | grep 'control.*Headphone' &> /dev/null; then
+    echo "Generic Card" >&2
     # Generic sound card
     if amixer -c "$CARD" sget Headphone | grep 'Playback.*\[on\]' &> /dev/null; then
         echo "Spkr"
