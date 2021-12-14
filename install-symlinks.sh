@@ -12,11 +12,11 @@ create_symlink() {
         return 1
     fi
 
-    target=$(realpath "$1")
+    target=$(realpath "--relative-to=$(dirname "$2")" "$1")
     link=$2
 
     if [ -e "$link" ]; then
-        link_real=$(realpath "$link")
+        link_real=$(realpath "--relative-to=$(dirname "$2")" "$link")
 
         if [ "$target" != "$link_real" ]; then
             # something else is already in the location
