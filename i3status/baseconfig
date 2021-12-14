@@ -15,9 +15,8 @@ order += "memory"
 order += "volume master"
 order += "disk /"
 order += "disk /home"
-order += "wireless _first_" # --LAPTOP--
-order += "ethernet _first_" # --LAPTOP--
-#order += "ethernet br0" # --DESKTOP--
+order += "wireless _first_"
+order += "ethernet _first_"
 order += "battery 1" # --LAPTOP--
 order += "tztime local"
 
@@ -34,8 +33,7 @@ memory {
 volume master {
     format = " Vol %volume "
     format_muted = " Vol muted "
-    device = "hw:1" # --LAPTOP--
-#    device = "pulse" # --DESKTOP--
+    device = "pulse"
 }
 
 disk "/" {

@@ -41,6 +41,7 @@ config_dir=$HOME/.config
 
 config_links=(
     compton.conf
+    picom.conf
     dunst
     i3
     i3blocks

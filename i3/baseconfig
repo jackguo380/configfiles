@@ -147,15 +147,12 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock
 #bindsym $mod+F12 exec gnome-screensaver-command --lock # --UBUNTU--
-bindsym $mod+F12 exec systemctl suspend # --MANJARO--
+bindsym $mod+F12 exec ~/.config/i3/xsecurelock.sh # --ARCH--
 
 # Volume keys
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -USR1 i3status # --UBUNTU--
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -USR1 i3status # --UBUNTU--
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -USR1 i3status # --UBUNTU--
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer -c 1 -q sset Master,0 1+ unmute && killall -USR1 i3status" # --MANJARO--
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer -c 1 -q sset Master,0 1- unmute && killall -USR1 i3status" # --MANJARO--
-bindsym XF86AudioMute exec --no-startup-id "amixer -c 1 -q sset Master,0 toggle && killall -USR1 i3status" # --MANJARO--
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -USR1 i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -USR1 i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -USR1 i3status
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -191,6 +188,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+for_window  [title="Pop-up"] floating enable
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -213,7 +212,7 @@ bar {
 }
 
 exec --no-startup-id compton # --LAPTOP--
-#exec --no-startup-id nice -n -5 compton # --DESKTOP--
+#exec --no-startup-id nice -n -5 picom # --DESKTOP--
 
 exec --no-startup-id feh --bg-fill ~/Pictures/Desktop.png
 
