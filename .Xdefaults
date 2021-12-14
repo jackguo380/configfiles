@@ -42,8 +42,8 @@
 
 !! Appearance
 *.foreground: #ffffff
-*.background: #263238
-*.cursorColor: #16A085
+*.background: #2B2E39
+*.cursorColor: #5294E2
 
 URxvt.background: [75]#1C2C34
 URxvt.depth: 32
