@@ -44,8 +44,13 @@ bind '"\C-g":"\eddicd ..\n"'
 # [user@hostname][~/workdir]
 # [N] $
 color_reset='\[\033[0m\]'
-user_color='\[\033[1;92m\]'
+if [ "$USER" = root ]; then
+    user_color='\[\033[1;91m\]'
+else
+    user_color='\[\033[1;92m\]'
+fi
 ssh_color='\[\033[1;95m\]'
+docker_color='\[\033[1;95m\]'
 sep_color='\[\033[1;90m\]'
 dir_color='\[\033[1;94m\]'
 
@@ -87,8 +92,13 @@ PS1="${color_reset}"
 PS1="$PS1${sep_color}["
 PS1="$PS1${user_color}\u@\h"
 PS1="$PS1${sep_color}]"
-# [ssh@ip]
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+if [ -f /.dockerenv ]; then
+    # [docker]
+    PS1="$PS1${sep_color}["
+    PS1="$PS1${docker_color}docker"
+    PS1="$PS1${sep_color}]"
+elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    # [ssh@ip]
     PS1="$PS1${sep_color}["
     PS1="$PS1${ssh_color}ssh@${SSH_CLIENT%% *}"
     PS1="$PS1${sep_color}]"
