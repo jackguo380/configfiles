@@ -24,7 +24,7 @@ fn main() {
 
     for workspace in workspaces.workspaces {
         if workspace.focused {
-            let mut result = i3.run_command(&format!("[workspace={}] move workspace to {}",
+            let mut result = i3.run_command(&format!("[workspace={}] move workspace to output {}",
                     workspace_to_move, workspace.output)).expect("Failed to move workspace");
 
             assert_eq!(result.outcomes.len(), 1, "Unexpected number of outputs");
