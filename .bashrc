@@ -17,7 +17,7 @@ shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
-HISTFILESIZE=2000
+HISTFILESIZE=10000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -142,10 +142,6 @@ if ! shopt -oq posix; then
     fi
 fi
 
-if command -v fd &> /dev/null; then
-    export FZF_DEFAULT_COMMAND='fd --type f'
-fi
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if command -v gpgconf > /dev/null; then
@@ -159,5 +155,8 @@ export EDITOR=vim
 
 export PATH="$HOME/.local/bin:$PATH"
 
-[ -f ~/.bashrc.local ] && source ~/.bashrc.local
+if command -v fd &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='fd --type f'
+fi
 
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
