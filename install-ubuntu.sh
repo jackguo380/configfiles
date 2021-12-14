@@ -8,7 +8,7 @@ echo "Installing symlinks"
 
 echo "Installing i3"
 
-./i3-install-ubuntu-18.sh
+./i3-install-ubuntu.sh
 
 echo "Installing urxvt"
 
